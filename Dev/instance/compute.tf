@@ -15,8 +15,6 @@ module "instance_template" {
   tags            = var.tags
   labels          = var.labels
   metadata = {
-
-
     #!/bin/bash
     startup_script = <<SCRIPT
 # package updates
