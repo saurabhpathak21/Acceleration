@@ -4,7 +4,11 @@ jobs:
   sample-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Print greeting
+      - name: Terraform init
         run: echo "terraform init"
-      - name: Print greeting
+      - name: Terraform Validate
+        run: echo "terraform validate"
+      - name: Terraform Plan
         run: echo "terraform plan"
+      - name: Terraform Apply
+        run: echo "terraform apply"
