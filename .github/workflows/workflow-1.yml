@@ -1,0 +1,10 @@
+name: workflow-1
+on: workflow_dispatch
+jobs:
+  sample-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greeting
+        run: echo "terraform init"
+      - name: Print greeting
+        run: echo "terraform plan"
