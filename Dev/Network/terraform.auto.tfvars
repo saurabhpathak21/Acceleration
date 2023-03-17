@@ -61,12 +61,12 @@ firewall_rules = [{
     target_service_accounts = null
     allow = [{
       protocol = "tcp"
-      ports    = ["443","80"]
+      ports    = ["443", "80"]
     }]
     deny = []
-  log_config = {
-    metadata = "INCLUDE_ALL_METADATA"
-  }
+    log_config = {
+      metadata = "INCLUDE_ALL_METADATA"
+    }
   }
 
 ]

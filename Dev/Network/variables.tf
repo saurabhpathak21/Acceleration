@@ -1,10 +1,27 @@
+/**
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 variable "project_id" {
-  description = "Host project Id"
+  description = "The ID of the project where this VPC will be created"
   type        = string
 }
 
 variable "network_name" {
   description = "The name of the network being created"
+  type        = string
 }
 
 variable "routing_mode" {
@@ -19,6 +36,36 @@ variable "shared_vpc_host" {
   default     = false
 }
 
+variable "subnets" {
+  type        = list(map(string))
+  description = "The list of subnets being created"
+}
+
+variable "secondary_ranges" {
+  type        = map(list(object({ range_name = string, ip_cidr_range = string })))
+  description = "Secondary ranges that will be used in some of the subnets"
+  default     = {}
+}
+
+variable "routes" {
+  type        = list(map(string))
+  description = "List of routes being created in this VPC"
+  default     = []
+}
+
+variable "firewall_rules" {
+  type        = any
+  description = "List of firewall rules"
+  default     = []
+}
+
+variable "delete_default_internet_gateway_routes" {
+  type        = bool
+  description = "If set, ensure that all routes within the network specified whose names begin with 'default-route' and with a next hop of 'default-internet-gateway' are deleted"
+  default     = false
+}
+
+
 variable "description" {
   type        = string
   description = "An optional description of this resource. The resource must be recreated to modify this field."
@@ -31,59 +78,8 @@ variable "auto_create_subnetworks" {
   default     = false
 }
 
-variable "delete_default_internet_gateway_routes" {
-  type        = bool
-  description = "If set, ensure that all routes within the network specified whose names begin with 'default-route' and with a next hop of 'default-internet-gateway' are deleted"
-  default     = false
-}
-
 variable "mtu" {
   type        = number
-  description = "The network MTU. Must be a value between 1460 and 1500 inclusive. If set to 0 (meaning MTU is unset), the network will default to 1460 automatically."
+  description = "The network MTU (If set to 0, meaning MTU is unset - defaults to '1460'). Recommended values: 1460 (default for historic reasons), 1500 (Internet default), or 8896 (for Jumbo packets). Allowed are all values in the range 1300 to 8896, inclusively."
   default     = 0
 }
-
-//routes
-
-variable "routes" {
-  type        = list(map(string))
-  description = "routes"
-  default     = []
-
-}
-
-//subnets
-variable "subnets" {
-  type        = list(map(string))
-  description = "The list of subnets being created"
-}
-
-//firewalls_rules
-variable "firewall_rules" {
-  description = "List of custom rule definitions (refer to variables file for syntax)."
-  default     = []
-  type = list(object({
-    name                    = string
-    description             = string
-    direction               = string
-    priority                = number
-    ranges                  = list(string)
-    source_tags             = list(string)
-    source_service_accounts = list(string)
-    target_tags             = list(string)
-    target_service_accounts = list(string)
-    allow = list(object({
-      protocol = string
-      ports    = list(string)
-    }))
-    deny = list(object({
-      protocol = string
-      ports    = list(string)
-    }))
-    log_config = object({
-      metadata = string
-    })
-  }))
-}
-
-  
