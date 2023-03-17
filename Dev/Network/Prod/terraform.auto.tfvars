@@ -70,5 +70,3 @@ firewall_rules = [{
   }
 
 ]
-
-GOOGLE_CREDENTIALS
