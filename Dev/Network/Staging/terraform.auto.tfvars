@@ -1,12 +1,12 @@
 project_id = "new-acceleration-364810"
 
 //vpc
-network_name = "new-acceleration-xpn-001"
+network_name = "stage-acceleration-xpn-001"
 
 //routes
 
 routes = [{
-  name              = "new-acceleration-xpn-001-route"
+  name              = "stage-acceleration-xpn-001-route"
   description       = "route through IGW to access internet"
   destination_range = "0.0.0.0/0"
   tags              = "egress-internet"
