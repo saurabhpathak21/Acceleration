@@ -25,7 +25,7 @@ jobs:
         run: pwd
 
       - name: list the directory
-        run: ls -l & cd Dev/Network/Dev/
+        run: cd Dev/Network/Dev/
 
       - name: Terraform Format
         id: fmt
