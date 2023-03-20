@@ -29,20 +29,20 @@ jobs:
 
       - name: Terraform Format
         id: fmt
-        run: terraform -chdir=Dev/network/Dev/ fmt -check
+        run: terraform -chdir=/Dev/network/Dev/ fmt -check
 
       - name: Terraform Init
         id: init
-        run: terraform -chdir=Dev/network/Dev/ init
+        run: terraform -chdir=/Dev/network/Dev/ init
       
       - name: Terraform Validate
         id: validate
-        run: terraform -chdir=Dev/network/Dev/ validate -no-color
+        run: terraform -chdir=/Dev/network/Dev/ validate -no-color
 
       - name: Terraform Plan
         id: plan
         #if: github.event_name == 'pull_request'
-        run: terraform -chdir=Dev/network/Dev/ plan -no-color -input=false
+        run: terraform -chdir=/Dev/network/Dev/ plan -no-color -input=false
         continue-on-error: true
 
       # - #name: Update Pull Request
