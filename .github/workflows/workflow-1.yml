@@ -24,9 +24,16 @@ jobs:
       - name: Check the current directory
         run: pwd
 
-      - name: list the directory
+      - name: Change the directory
         run: cd Dev/Network/Dev/
+      
 
+      - name: list the directory
+        run: ls -l 
+
+      - name: current directory
+        run: pwd
+        
       - name: Terraform Format
         id: fmt
         run: terraform fmt -check
