@@ -30,4 +30,12 @@ terraform {
   provider_meta "google" {
     module_name = "blueprints/terraform/terraform-google-network/v6.0.1"
   }
+
+  cloud {
+    organization = "New-acceleration"
+
+  workspaces {
+      name = "staging-acceleration"
+    }
+  }
 }
