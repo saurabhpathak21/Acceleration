@@ -27,6 +27,7 @@ subnets = [
     subnet_private_access = "true"
   }
 ]
+
 //firewall rules
 
 firewall_rules = [{
