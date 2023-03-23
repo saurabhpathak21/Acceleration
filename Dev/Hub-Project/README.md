@@ -58,7 +58,6 @@
 
 | Name | Description |
 |------|-------------|
-| <a name="output_Spoke_tunnel_names"></a> [Spoke\_tunnel\_names](#output\_Spoke\_tunnel\_names) | Spoke VPN tunnel names. |
 | <a name="output_hub_gateway_name"></a> [hub\_gateway\_name](#output\_hub\_gateway\_name) | hub VPN gateway name. |
 | <a name="output_hub_tunnel_names"></a> [hub\_tunnel\_names](#output\_hub\_tunnel\_names) | hub VPN tunnel names. |
 | <a name="output_network"></a> [network](#output\_network) | The created network |
@@ -68,7 +67,8 @@
 | <a name="output_project_id"></a> [project\_id](#output\_project\_id) | VPC project id |
 | <a name="output_project_info"></a> [project\_info](#output\_project\_info) | The ID of the created project |
 | <a name="output_route_names"></a> [route\_names](#output\_route\_names) | The route names associated with this VPC |
-| <a name="output_spoke_gateway_name"></a> [spoke\_gateway\_name](#output\_spoke\_gateway\_name) | Spoke VPN gateway name. |
+| <a name="output_spoke_gateway_name"></a> [spoke\_gateway\_name](#output\_spoke\_gateway\_name) | spoke VPN gateway name. |
+| <a name="output_spoke_tunnel_names"></a> [spoke\_tunnel\_names](#output\_spoke\_tunnel\_names) | spoke VPN tunnel names. |
 | <a name="output_subnets"></a> [subnets](#output\_subnets) | A map with keys of form subnet\_region/subnet\_name and values being the outputs of the google\_compute\_subnetwork resources used to create corresponding subnets. |
 | <a name="output_subnets_flow_logs"></a> [subnets\_flow\_logs](#output\_subnets\_flow\_logs) | Whether the subnets will have VPC flow logs enabled |
 | <a name="output_subnets_ids"></a> [subnets\_ids](#output\_subnets\_ids) | The IDs of the subnets being created |

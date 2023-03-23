@@ -83,7 +83,7 @@ output "route_names" {
 //vpn
 
 output "spoke_gateway_name" {
-  description = "Spoke VPN gateway name."
+  description = "spoke VPN gateway name."
   value       = module.vpn-ha-to-hub.name
 }
 
@@ -98,8 +98,8 @@ output "hub_tunnel_names" {
   sensitive   = true
 }
 
-output "Spoke_tunnel_names" {
-  description = "Spoke VPN tunnel names."
+output "spoke_tunnel_names" {
+  description = "spoke VPN tunnel names."
   value       = module.vpn-ha-to-hub.tunnel_names
   sensitive   = true
 }
