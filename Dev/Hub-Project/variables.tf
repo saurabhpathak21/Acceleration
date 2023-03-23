@@ -1,11 +1,22 @@
 
-variable "project_id" {
-  description = "The ID of the project where this VPC will be created"
+variable "organization_id" {
+  description = "The organization id for the associated services"
+}
+
+variable "billing_account" {
+  description = "The ID of the billing account to associate this project with"
+}
+
+//network 
+
+variable "env" {
+  description = "The env of the project where this VPC will be created"
   type        = string
 }
 
-variable "network_name" {
-  description = "The name of the network being created"
+
+variable "hub_project_id" {
+  description = "The ID of the project where this VPC will be created"
   type        = string
 }
 
@@ -18,7 +29,7 @@ variable "routing_mode" {
 variable "shared_vpc_host" {
   type        = bool
   description = "Makes this project a Shared VPC host if 'true' (default 'false')"
-  default     = false
+  default     = true
 }
 
 variable "subnets" {
@@ -67,4 +78,42 @@ variable "mtu" {
   type        = number
   description = "The network MTU (If set to 0, meaning MTU is unset - defaults to '1460'). Recommended values: 1460 (default for historic reasons), 1500 (Internet default), or 8896 (for Jumbo packets). Allowed are all values in the range 1300 to 8896, inclusively."
   default     = 0
+}
+
+
+//vpn
+
+/*
+variable "hub_project_id" {
+  description = "Production Project ID."
+  type        = string
+}
+
+
+
+variable "prod_network_self_link" {
+  description = "Production Network Self Link."
+  type        = string
+}
+*/
+
+
+variable "spoke_project_id" {
+  description = "Management Project ID."
+  type        = string
+}
+
+
+/*
+variable "spoke_network_self_link" {
+  description = "Management Network Self Link."
+  type        = string
+}
+
+*/
+
+variable "region" {
+  description = "Region."
+  type        = string
+  default     = "europe-west4"
 }

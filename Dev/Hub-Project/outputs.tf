@@ -1,4 +1,9 @@
 
+output "project_info" {
+  value       = module.spoke-project.project_id
+  description = "The ID of the created project"
+}
+
 output "network" {
   value       = module.vpc
   description = "The created network"
@@ -72,4 +77,29 @@ output "subnets_secondary_ranges" {
 output "route_names" {
   value       = [for route in module.routes.routes : route.name]
   description = "The route names associated with this VPC"
+}
+
+
+//vpn
+
+output "spoke_gateway_name" {
+  description = "Spoke VPN gateway name."
+  value       = module.vpn-ha-to-hub.name
+}
+
+output "hub_gateway_name" {
+  description = "hub VPN gateway name."
+  value       = module.vpn-ha-to-spoke.name
+}
+
+output "hub_tunnel_names" {
+  description = "hub VPN tunnel names."
+  value       = module.vpn-ha-to-spoke.tunnel_names
+  sensitive   = true
+}
+
+output "Spoke_tunnel_names" {
+  description = "Spoke VPN tunnel names."
+  value       = module.vpn-ha-to-hub.tunnel_names
+  sensitive   = true
 }

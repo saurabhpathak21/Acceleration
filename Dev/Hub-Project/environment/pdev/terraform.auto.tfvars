@@ -1,19 +1,10 @@
-project_id = "new-acceleration-364810"
+hub_project_id = "new-acceleration-364810"
+spoke_project_id = "new-acceleration-364811"
+organization_id = ""
+billing_account = ""
 
-//vpc
 
-network_name = "dev-acceleration-xpn-001"
-
-//routes
-
-routes = [{
-  name              = "dev-acceleration-xpn-001-route"
-  description       = "route through IGW to access internet"
-  destination_range = "0.0.0.0/0"
-  tags              = "egress-internet"
-  next_hop_internet = "true"
-}]
-
+env        = "dev"
 //subnets
 subnets = [
   {
@@ -28,6 +19,7 @@ subnets = [
     subnet_private_access = "true"
   }
 ]
+
 
 //firewall rules
 
@@ -72,4 +64,3 @@ firewall_rules = [{
   }
 
 ]
-

@@ -1,27 +1,12 @@
-/**
- * Copyright 2020 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
-##To Prod VPC
+##To Hub  VPC
 module "vpn-ha-to-prod" {
   source           = "../../../modules/vpn_ha"
   project_id       = var.mgt_project_id
   region           = var.region
   network          = var.mgt_network_self_link
-  name             = "mgmt-to-prod"
-  peer_gcp_gateway = module.vpn-ha-to-mgmt.self_link
+  name             = "spoke-to-prod"
+  peer_gcp_gateway = module.vpn-ha-to-spoke.self_link
   router_asn       = 64514
   tunnels = {
     remote-0 = {
