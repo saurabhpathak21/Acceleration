@@ -85,28 +85,28 @@ variable "mtu" {
 
 /*
 variable "hub_project_id" {
-  description = "Production Project ID."
+  description = "hubuction Project ID."
   type        = string
 }
 
 
 
-variable "prod_network_self_link" {
-  description = "Production Network Self Link."
+variable "hub_network_self_link" {
+  description = "Hub Network Self Link."
   type        = string
 }
 */
 
 
 variable "spoke_project_id" {
-  description = "Management Project ID."
+  description = "spoke Project ID."
   type        = string
 }
 
 
 /*
 variable "spoke_network_self_link" {
-  description = "Management Network Self Link."
+  description = "spoke Network Self Link."
   type        = string
 }
 

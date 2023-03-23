@@ -51,7 +51,7 @@
 | <a name="input_routing_mode"></a> [routing\_mode](#input\_routing\_mode) | The network routing mode (default 'GLOBAL') | `string` | `"GLOBAL"` | no |
 | <a name="input_secondary_ranges"></a> [secondary\_ranges](#input\_secondary\_ranges) | Secondary ranges that will be used in some of the subnets | `map(list(object({ range_name = string, ip_cidr_range = string })))` | `{}` | no |
 | <a name="input_shared_vpc_host"></a> [shared\_vpc\_host](#input\_shared\_vpc\_host) | Makes this project a Shared VPC host if 'true' (default 'false') | `bool` | `true` | no |
-| <a name="input_spoke_project_id"></a> [spoke\_project\_id](#input\_spoke\_project\_id) | Management Project ID. | `string` | n/a | yes |
+| <a name="input_spoke_project_id"></a> [spoke\_project\_id](#input\_spoke\_project\_id) | spoke Project ID. | `string` | n/a | yes |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | The list of subnets being created | `list(map(string))` | n/a | yes |
 
 ## Outputs
