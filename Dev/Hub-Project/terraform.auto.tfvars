@@ -1,11 +1,17 @@
-hub_project_id = "new-acceleration-364810"
-spoke_project_id = "new-acceleration-364811"
-organization_id = ""
+//Org and folder details
 billing_account = ""
+env             = "dev"
+organization_id = ""
+folder_id       = ""
 
 
-env        = "dev"
-//subnets
+
+//spoke project
+
+spoke_project_id = "new-acceleration-spoke"
+
+// subnets
+
 subnets = [
   {
     subnet_name   = "public-subnet"
@@ -19,8 +25,6 @@ subnets = [
     subnet_private_access = "true"
   }
 ]
-
-
 //firewall rules
 
 firewall_rules = [{

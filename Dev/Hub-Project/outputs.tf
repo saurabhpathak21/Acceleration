@@ -1,6 +1,6 @@
 
 output "project_info" {
-  value       = module.spoke-project.project_id
+  value       = module.hub_project.project_id
   description = "The ID of the created project"
 }
 

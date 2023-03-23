@@ -20,8 +20,8 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_firewall_rules"></a> [firewall\_rules](#module\_firewall\_rules) | ../modules/vpc/firewalls | n/a |
+| <a name="module_hub_project"></a> [hub\_project](#module\_hub\_project) | ../modules/project | n/a |
 | <a name="module_routes"></a> [routes](#module\_routes) | ../modules/vpc/routes | n/a |
-| <a name="module_spoke-project"></a> [spoke-project](#module\_spoke-project) | ../modules/project | n/a |
 | <a name="module_subnets"></a> [subnets](#module\_subnets) | ../modules/vpc/subnets | n/a |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | ../modules/vpc | n/a |
 | <a name="module_vpn-ha-to-hub"></a> [vpn-ha-to-hub](#module\_vpn-ha-to-hub) | ../modules/vpn_ha | n/a |
@@ -39,11 +39,13 @@
 |------|-------------|------|---------|:--------:|
 | <a name="input_auto_create_subnetworks"></a> [auto\_create\_subnetworks](#input\_auto\_create\_subnetworks) | When set to true, the network is created in 'auto subnet mode' and it will create a subnet for each region automatically across the 10.128.0.0/9 address range. When set to false, the network is created in 'custom subnet mode' so the user can explicitly connect subnetwork resources. | `bool` | `false` | no |
 | <a name="input_billing_account"></a> [billing\_account](#input\_billing\_account) | The ID of the billing account to associate this project with | `any` | n/a | yes |
-| <a name="input_delete_default_internet_gateway_routes"></a> [delete\_default\_internet\_gateway\_routes](#input\_delete\_default\_internet\_gateway\_routes) | If set, ensure that all routes within the network specified whose names begin with 'default-route' and with a next hop of 'default-internet-gateway' are deleted | `bool` | `false` | no |
+| <a name="input_default_network_tier"></a> [default\_network\_tier](#input\_default\_network\_tier) | Default Network Service Tier for resources created in this project. If unset, the value will not be modified. See https://cloud.google.com/network-tiers/docs/using-network-service-tiers and https://cloud.google.com/network-tiers. | `string` | `""` | no |
+| <a name="input_delete_default_internet_gateway_routes"></a> [delete\_default\_internet\_gateway\_routes](#input\_delete\_default\_internet\_gateway\_routes) | If set, ensure that all routes within the network specified whose names begin with 'default-route' and with a next hop of 'default-internet-gateway' are deleted | `bool` | `true` | no |
 | <a name="input_description"></a> [description](#input\_description) | An optional description of this resource. The resource must be recreated to modify this field. | `string` | `""` | no |
 | <a name="input_env"></a> [env](#input\_env) | The env of the project where this VPC will be created | `string` | n/a | yes |
 | <a name="input_firewall_rules"></a> [firewall\_rules](#input\_firewall\_rules) | List of firewall rules | `any` | `[]` | no |
-| <a name="input_hub_project_id"></a> [hub\_project\_id](#input\_hub\_project\_id) | The ID of the project where this VPC will be created | `string` | n/a | yes |
+| <a name="input_folder_id"></a> [folder\_id](#input\_folder\_id) | The folder id for the associated project | `any` | n/a | yes |
+| <a name="input_module_depends_on"></a> [module\_depends\_on](#input\_module\_depends\_on) | List of modules or resources this module depends on. | `list(any)` | `[]` | no |
 | <a name="input_mtu"></a> [mtu](#input\_mtu) | The network MTU (If set to 0, meaning MTU is unset - defaults to '1460'). Recommended values: 1460 (default for historic reasons), 1500 (Internet default), or 8896 (for Jumbo packets). Allowed are all values in the range 1300 to 8896, inclusively. | `number` | `0` | no |
 | <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | The organization id for the associated services | `any` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | Region. | `string` | `"europe-west4"` | no |

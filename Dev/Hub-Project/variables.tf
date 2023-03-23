@@ -3,6 +3,10 @@ variable "organization_id" {
   description = "The organization id for the associated services"
 }
 
+variable "folder_id" {
+  description = "The folder id for the associated project"
+}
+
 variable "billing_account" {
   description = "The ID of the billing account to associate this project with"
 }
@@ -14,10 +18,10 @@ variable "env" {
   type        = string
 }
 
-
-variable "hub_project_id" {
-  description = "The ID of the project where this VPC will be created"
+variable "default_network_tier" {
+  description = "Default Network Service Tier for resources created in this project. If unset, the value will not be modified. See https://cloud.google.com/network-tiers/docs/using-network-service-tiers and https://cloud.google.com/network-tiers."
   type        = string
+  default     = ""
 }
 
 variable "routing_mode" {
@@ -58,7 +62,7 @@ variable "firewall_rules" {
 variable "delete_default_internet_gateway_routes" {
   type        = bool
   description = "If set, ensure that all routes within the network specified whose names begin with 'default-route' and with a next hop of 'default-internet-gateway' are deleted"
-  default     = false
+  default     = true
 }
 
 
@@ -84,7 +88,7 @@ variable "mtu" {
 //vpn
 
 /*
-variable "hub_project_id" {
+variable "hub_project" {
   description = "hubuction Project ID."
   type        = string
 }
@@ -116,4 +120,10 @@ variable "region" {
   description = "Region."
   type        = string
   default     = "europe-west4"
+}
+
+variable "module_depends_on" {
+  description = "List of modules or resources this module depends on."
+  type        = list(any)
+  default     = []
 }
