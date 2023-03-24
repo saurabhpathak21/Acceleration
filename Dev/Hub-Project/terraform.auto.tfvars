@@ -1,8 +1,7 @@
 //Org and folder details
-billing_account = ""
-env             = "dev"
-organization_id = ""
-folder_id       = ""
+billing_account = "01007E-3772F9-8A7ECF"
+organization_id = "123456789"
+#folder_id       = ""
 
 
 

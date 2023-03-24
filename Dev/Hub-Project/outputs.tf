@@ -1,9 +1,9 @@
-
+/*
 output "project_info" {
   value       = module.hub_project.project_id
   description = "The ID of the created project"
 }
-
+*/
 output "network" {
   value       = module.vpc
   description = "The created network"
@@ -80,26 +80,11 @@ output "route_names" {
 }
 
 
+//DNS
+output "name_servers" {
+  description = "Zone name servers."
+  value       = module.dns-private-zone.name_servers
+}
+
 //vpn
 
-output "spoke_gateway_name" {
-  description = "spoke VPN gateway name."
-  value       = module.vpn-ha-to-hub.name
-}
-
-output "hub_gateway_name" {
-  description = "hub VPN gateway name."
-  value       = module.vpn-ha-to-spoke.name
-}
-
-output "hub_tunnel_names" {
-  description = "hub VPN tunnel names."
-  value       = module.vpn-ha-to-spoke.tunnel_names
-  sensitive   = true
-}
-
-output "spoke_tunnel_names" {
-  description = "spoke VPN tunnel names."
-  value       = module.vpn-ha-to-hub.tunnel_names
-  sensitive   = true
-}

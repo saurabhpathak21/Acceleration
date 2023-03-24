@@ -2,10 +2,12 @@
 variable "organization_id" {
   description = "The organization id for the associated services"
 }
+/*
 
 variable "folder_id" {
   description = "The folder id for the associated project"
 }
+*/
 
 variable "billing_account" {
   description = "The ID of the billing account to associate this project with"
@@ -13,9 +15,14 @@ variable "billing_account" {
 
 //network 
 
-variable "env" {
-  description = "The env of the project where this VPC will be created"
+variable "type" {
+  description = "The type of the project if it is hub or spoke"
   type        = string
+
+  validation {
+    condition     = contains(["hub", "spoke"], lower(var.type))
+    error_message = "Unsupported project type specified. Supported project include: hub, spoke"
+  }
 }
 
 variable "default_network_tier" {
@@ -84,37 +91,42 @@ variable "mtu" {
   default     = 0
 }
 
+// DNS
+
+variable "project_id" {
+  description = "Project id where the zone will be created."
+  default     = ""
+}
+
+variable "network_self_links" {
+  description = "Self link of the network that will be allowed to query the zone."
+  default     = []
+}
+
+variable "name" {
+  description = "DNS zone name."
+  default     = "foo-local"
+}
+
+variable "domain" {
+  description = "Zone domain."
+  default     = "foo.local."
+}
+
+variable "labels" {
+  type        = map(any)
+  description = "A set of key/value label pairs to assign to this ManagedZone"
+  default = {
+    owner   = "newacceleration"
+    version = "1.0"
+  }
+}
+
+
+
 
 //vpn
 
-/*
-variable "hub_project" {
-  description = "hubuction Project ID."
-  type        = string
-}
-
-
-
-variable "hub_network_self_link" {
-  description = "Hub Network Self Link."
-  type        = string
-}
-*/
-
-
-variable "spoke_project_id" {
-  description = "spoke Project ID."
-  type        = string
-}
-
-
-/*
-variable "spoke_network_self_link" {
-  description = "spoke Network Self Link."
-  type        = string
-}
-
-*/
 
 variable "region" {
   description = "Region."

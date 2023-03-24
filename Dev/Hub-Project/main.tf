@@ -1,9 +1,11 @@
 
 
 locals {
-  project_name = "new-acceleration-${var.env}-hub"
-  network_name = "${var.env}-acceleration-xpn-001"
+  project_name = "acceleration-${var.type}"
+  network_name = "${var.type}"
   region       = "europe-west2"
+  #recordsets   = yaml_decode(file("records.yml"))
+
   rules = [
     for f in var.firewall_rules : {
       name                    = f.name
@@ -24,22 +26,27 @@ locals {
 
 #Create Project
 
+//enable API's
+#compute
+#dns
+
+/*
 module "hub_project" {
   source               = "../modules/project"
   random_project_id    = true
-  name                 = local.project_name
+  name                 = module.hub_project.project_id
   org_id               = var.organization_id
-  folder_id            = var.folder_id
+  #folder_id            = var.folder_id
   billing_account      = var.billing_account
   default_network_tier = var.default_network_tier
 
   activate_apis = [
     "compute.googleapis.com",
-    "cloudresourcemanager.googleapis.com"
+    "dns.googleapis.com"
   ]
 
 }
-
+*/
 
 #Assign Permission
 
@@ -47,7 +54,7 @@ resource "google_project_iam_binding" "project" {
   project = module.hub_project.project_id
   role    = "roles/editor"
   members = [
-    "user:saurabh.pathak@ps.com", "user:test.test@test123.com"
+    "user:saurabh.pathaks21@gmail.com"
   ]
 }
 
@@ -60,7 +67,7 @@ resource "google_project_iam_binding" "project" {
 module "vpc" {
   source = "../modules/vpc"
 
-  network_name = local.network_name
+  network_name = "${local.network_name}-acceleration-xpn-001"
   project_id   = module.hub_project.project_id
 
 }
@@ -102,18 +109,78 @@ module "firewall_rules" {
   rules        = local.rules
 }
 
+
+//DNS
+
+module "dns-private-zone" {
+  source  = "../modules/vpc/dns"
+
+  project_id = module.hub_project.project_id
+  type       = "private"
+  name       = "${local.network_name}-acceleration"
+  domain     = "new-acceleration.com."
+
+  private_visibility_config_networks = [module.vpc.network_self_link]
+
+  recordsets = [
+    {
+      name    = ""
+      type    = "NS"
+      ttl     = 300
+      records = [
+        "127.0.0.1",
+      ]
+    },
+    {
+      name    = "localhost"
+      type    = "A"
+      ttl     = 300
+      records = [
+        "127.0.0.1",
+      ]
+    },
+  ]
+}
+
+/*
+//DNS Peering- Enable to peer the DNS
+
+
+module "dns-peering-zone" {
+  source                             = "../modules/vpc/dns"
+  project_id                         = module.hub_project.project_id
+  type                               = "peering"
+  name                               = "${local.network_name}-acceleration-peering"
+  domain                             = "new-acceleration.com."
+  private_visibility_config_networks = [module.vpc.network_self_link]
+  target_network                     = var.target_network_self_link  #Update the target network to which DNS peering is required
+  labels                             = var.labels
+}
+
+*/
 //VPN
 
-##To Hub  VPC
+//Create Router
 
-module "vpn-ha-to-hub" {
+module "cloud_router" {
+  source  = "../modules/vpc/cloud_router"
+  name    = "${local.network_name}-router"
+  project = module.hub_project.project_id
+  region  = local.region
+  network = module.vpc.network_name
+}
+
+
+/*
+module "Hub_vpn" {
   source = "../modules/vpn_ha"
 
-  project_id       = var.spoke_project_id
+  project_id       = module.hub_project.project_id
   region           = local.region
   network          = module.vpc.network_self_link
   name             = "spoke-to-hub"
-  peer_gcp_gateway = module.vpn-ha-to-spoke.self_link
+  peer_external_gateway = ""  #details of the on-prem network 
+
   router_asn       = 64514
   tunnels = {
     remote-0 = {
@@ -143,43 +210,4 @@ module "vpn-ha-to-hub" {
   }
   depends_on = [module.subnets.subnets]
 }
-
-##To Spoke VPC
-
-module "vpn-ha-to-spoke" {
-  source = "../modules/vpn_ha"
-
-  project_id       = module.hub_project.project_id
-  region           = local.region
-  network          = module.vpc.network_self_link
-  name             = "hub-to-spoke"
-  router_asn       = 64513
-  peer_gcp_gateway = module.vpn-ha-to-hub.self_link
-  tunnels = {
-    remote-0 = {
-      bgp_peer = {
-        address = "169.254.1.2"
-        asn     = 64514
-      }
-      bgp_peer_options                = null
-      bgp_session_range               = "169.254.1.1/30"
-      ike_version                     = 2
-      vpn_gateway_interface           = 0
-      peer_external_gateway_interface = null
-      shared_secret                   = module.vpn-ha-to-hub.random_secret
-    }
-    remote-1 = {
-      bgp_peer = {
-        address = "169.254.2.2"
-        asn     = 64514
-      }
-      bgp_peer_options                = null
-      bgp_session_range               = "169.254.2.1/30"
-      ike_version                     = 2
-      vpn_gateway_interface           = 1
-      peer_external_gateway_interface = null
-      shared_secret                   = module.vpn-ha-to-hub.random_secret
-    }
-  }
-  depends_on = [module.subnets.subnets]
-}
+*/
