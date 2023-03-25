@@ -1,9 +1,9 @@
-/*
+
 output "project_info" {
-  value       = module.hub_project.project_id
+  value       = module.project.project_id
   description = "The ID of the created project"
 }
-*/
+
 output "network" {
   value       = module.vpc
   description = "The created network"
@@ -87,4 +87,10 @@ output "name_servers" {
 }
 
 //vpn
+
+output "router_name" {
+  description = "router name"
+  value       = module.cloud_router.router.name
+}
+
 

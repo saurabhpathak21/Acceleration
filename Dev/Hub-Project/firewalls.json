@@ -1,29 +1,4 @@
-//Org and folder details
-billing_account = "01007E-3772F9-8A7ECF"
-organization_id = "123456789"
-#folder_id       = ""
 
-
-
-//spoke project
-
-spoke_project_id = "new-acceleration-spoke"
-
-// subnets
-
-subnets = [
-  {
-    subnet_name   = "public-subnet"
-    subnet_ip     = "10.0.10.0/24"
-    subnet_region = "europe-west2"
-  },
-  {
-    subnet_name           = "private-subnet"
-    subnet_ip             = "10.0.20.0/24"
-    subnet_region         = "europe-west2"
-    subnet_private_access = "true"
-  }
-]
 //firewall rules
 
 firewall_rules = [{

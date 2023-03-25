@@ -1,11 +1,12 @@
 
 
 locals {
-  project_name = "acceleration-${var.type}"
-  network_name = "${var.type}"
-  region       = "europe-west2"
-  #recordsets   = yaml_decode(file("records.yml"))
 
+  subnet  = yamldecode(file("${path.module}/subnets.yaml"))
+  route   = yamldecode(file("${path.module}/routes.yaml"))
+  project_name = "acceleration-${var.type}"
+  network_name =  var.type
+  region       = "europe-west2"
   rules = [
     for f in var.firewall_rules : {
       name                    = f.name
@@ -24,17 +25,16 @@ locals {
   ]
 }
 
-#Create Project
 
-//enable API's
-#compute
-#dns
+/******************************************
+	Project
+ *****************************************/
 
-/*
-module "hub_project" {
-  source               = "../modules/project"
+
+module "project" {
+  source               = "./modules/project"
   random_project_id    = true
-  name                 = module.hub_project.project_id
+  name                 = local.project_name
   org_id               = var.organization_id
   #folder_id            = var.folder_id
   billing_account      = var.billing_account
@@ -46,12 +46,16 @@ module "hub_project" {
   ]
 
 }
-*/
+
+/******************************************
+	IAM
+ *****************************************/
+
 
 #Assign Permission
 
 resource "google_project_iam_binding" "project" {
-  project = module.hub_project.project_id
+  project = module.project.project_id
   role    = "roles/editor"
   members = [
     "user:saurabh.pathaks21@gmail.com"
@@ -65,24 +69,23 @@ resource "google_project_iam_binding" "project" {
 	VPC configuration
  *****************************************/
 module "vpc" {
-  source = "../modules/vpc"
+  source = "./modules/vpc"
 
+  #count        = var.type == "hub" ? 1 : 0
   network_name = "${local.network_name}-acceleration-xpn-001"
-  project_id   = module.hub_project.project_id
+  project_id   = module.project.project_id
 
 }
-
-//subnets
 
 /******************************************
 	Subnet configuration
  *****************************************/
 module "subnets" {
-  source = "../modules/vpc/subnets"
+  source = "./modules/vpc/subnets"
 
-  project_id       = module.hub_project.project_id
+  project_id       = module.project.project_id
   network_name     = module.vpc.network_name
-  subnets          = var.subnets
+  subnets          = local.subnet.subnets
   secondary_ranges = var.secondary_ranges
 }
 
@@ -90,11 +93,11 @@ module "subnets" {
 	Routes
  *****************************************/
 module "routes" {
-  source = "../modules/vpc/routes"
+  source = "./modules/vpc/routes"
 
-  project_id        = module.hub_project.project_id
+  project_id        = module.project.project_id
   network_name      = module.vpc.network_name
-  routes            = var.routes
+  routes            = local.route.routes
   module_depends_on = [module.subnets.subnets]
 }
 
@@ -103,38 +106,32 @@ module "routes" {
  *****************************************/
 
 module "firewall_rules" {
-  source       = "../modules/vpc/firewalls"
-  project_id   = module.hub_project.project_id
+  source = "./modules/vpc/firewalls"
+
+  project_id   = module.project.project_id
   network_name = module.vpc.network_name
-  rules        = local.rules
+  for_each        = { for rule in local.rules:  "${rule.fileName}--${rule.id}" => rule }
+  rules        = each.value
 }
 
-
-//DNS
+/******************************************
+	DNS
+ *****************************************/
 
 module "dns-private-zone" {
-  source  = "../modules/vpc/dns"
+  source     = "./modules/vpc/dns"
 
-  project_id = module.hub_project.project_id
+  project_id = module.project.project_id
   type       = "private"
   name       = "${local.network_name}-acceleration"
   domain     = "new-acceleration.com."
-
   private_visibility_config_networks = [module.vpc.network_self_link]
 
   recordsets = [
     {
-      name    = ""
-      type    = "NS"
-      ttl     = 300
-      records = [
-        "127.0.0.1",
-      ]
-    },
-    {
-      name    = "localhost"
-      type    = "A"
-      ttl     = 300
+      name = "localhost"
+      type = "A"
+      ttl  = 300
       records = [
         "127.0.0.1",
       ]
@@ -147,8 +144,8 @@ module "dns-private-zone" {
 
 
 module "dns-peering-zone" {
-  source                             = "../modules/vpc/dns"
-  project_id                         = module.hub_project.project_id
+  source                             = "./modules/vpc/dns"
+  project_id                         = module.project.project_id
   type                               = "peering"
   name                               = "${local.network_name}-acceleration-peering"
   domain                             = "new-acceleration.com."
@@ -158,30 +155,48 @@ module "dns-peering-zone" {
 }
 
 */
-//VPN
+/******************************************
+	Router
+ *****************************************/
+
 
 //Create Router
 
 module "cloud_router" {
-  source  = "../modules/vpc/cloud_router"
-  name    = "${local.network_name}-router"
-  project = module.hub_project.project_id
+  source = "./modules/vpc/cloud_router"
+
+  name    = "${local.network_name}-${var.router_name}"
+  project = module.project.project_id
   region  = local.region
   network = module.vpc.network_name
 }
 
+/******************************************
+	VPN
+ *****************************************/
 
-/*
-module "Hub_vpn" {
-  source = "../modules/vpn_ha"
+module "vpn" {
+  source = "./modules/vpn_ha"
 
-  project_id       = module.hub_project.project_id
-  region           = local.region
-  network          = module.vpc.network_self_link
-  name             = "spoke-to-hub"
-  peer_external_gateway = ""  #details of the on-prem network 
 
-  router_asn       = 64514
+  project_id  = module.project.project_id
+  region      = local.region
+  network     = module.vpc.network_self_link
+  router_name = module.cloud_router.router.name
+  name        = "${local.network_name}-vpn"
+
+  #update with the details of the on-prem network 
+
+  peer_external_gateway = {
+    redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
+    interfaces = [{
+      id         = 0
+      ip_address = "8.8.8.8" # on-prem router ip address
+
+    }]
+  }
+
+  router_asn = 64514
   tunnels = {
     remote-0 = {
       bgp_peer = {
@@ -192,7 +207,7 @@ module "Hub_vpn" {
       bgp_session_range               = "169.254.1.2/30"
       ike_version                     = 2
       vpn_gateway_interface           = 0
-      peer_external_gateway_interface = null
+      peer_external_gateway_interface = 0
       shared_secret                   = ""
     }
     remote-1 = {
@@ -204,10 +219,9 @@ module "Hub_vpn" {
       bgp_session_range               = "169.254.2.2/30"
       ike_version                     = 2
       vpn_gateway_interface           = 1
-      peer_external_gateway_interface = null
+      peer_external_gateway_interface = 0
       shared_secret                   = ""
     }
   }
-  depends_on = [module.subnets.subnets]
+  depends_on = [module.cloud_router]
 }
-*/

@@ -2,27 +2,25 @@
 variable "organization_id" {
   description = "The organization id for the associated services"
 }
-/*
+
 
 variable "folder_id" {
   description = "The folder id for the associated project"
+  type        = string
+  default     = ""
 }
-*/
 
 variable "billing_account" {
   description = "The ID of the billing account to associate this project with"
+  
 }
 
 //network 
 
 variable "type" {
-  description = "The type of the project if it is hub or spoke"
+  description = "The type of the project if it is hub or spoke."
+  default     = "hub"
   type        = string
-
-  validation {
-    condition     = contains(["hub", "spoke"], lower(var.type))
-    error_message = "Unsupported project type specified. Supported project include: hub, spoke"
-  }
 }
 
 variable "default_network_tier" {
@@ -46,6 +44,7 @@ variable "shared_vpc_host" {
 variable "subnets" {
   type        = list(map(string))
   description = "The list of subnets being created"
+  default     = []
 }
 
 variable "secondary_ranges" {
@@ -93,11 +92,6 @@ variable "mtu" {
 
 // DNS
 
-variable "project_id" {
-  description = "Project id where the zone will be created."
-  default     = ""
-}
-
 variable "network_self_links" {
   description = "Self link of the network that will be allowed to query the zone."
   default     = []
@@ -122,16 +116,12 @@ variable "labels" {
   }
 }
 
-
-
-
 //vpn
 
-
-variable "region" {
-  description = "Region."
+variable "router_name" {
+  description = "Name of router, leave blank to create one."
   type        = string
-  default     = "europe-west4"
+  default     = "vpn-router"
 }
 
 variable "module_depends_on" {

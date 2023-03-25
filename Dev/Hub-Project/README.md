@@ -19,12 +19,14 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cloud_router"></a> [cloud\_router](#module\_cloud\_router) | ../modules/vpc/router/cloud_router | n/a |
-| <a name="module_dns-private-zone"></a> [dns-private-zone](#module\_dns-private-zone) | ../modules/vpc/dns | n/a |
-| <a name="module_firewall_rules"></a> [firewall\_rules](#module\_firewall\_rules) | ../modules/vpc/firewalls | n/a |
-| <a name="module_routes"></a> [routes](#module\_routes) | ../modules/vpc/routes | n/a |
-| <a name="module_subnets"></a> [subnets](#module\_subnets) | ../modules/vpc/subnets | n/a |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | ../modules/vpc | n/a |
+| <a name="module_cloud_router"></a> [cloud\_router](#module\_cloud\_router) | ./modules/vpc/cloud_router | n/a |
+| <a name="module_dns-private-zone"></a> [dns-private-zone](#module\_dns-private-zone) | ./modules/vpc/dns | n/a |
+| <a name="module_firewall_rules"></a> [firewall\_rules](#module\_firewall\_rules) | ./modules/vpc/firewalls | n/a |
+| <a name="module_project"></a> [project](#module\_project) | ./modules/project | n/a |
+| <a name="module_routes"></a> [routes](#module\_routes) | ./modules/vpc/routes | n/a |
+| <a name="module_subnets"></a> [subnets](#module\_subnets) | ./modules/vpc/subnets | n/a |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | ./modules/vpc | n/a |
+| <a name="module_vpn"></a> [vpn](#module\_vpn) | ./modules/vpn_ha | n/a |
 
 ## Resources
 
@@ -43,20 +45,20 @@
 | <a name="input_description"></a> [description](#input\_description) | An optional description of this resource. The resource must be recreated to modify this field. | `string` | `""` | no |
 | <a name="input_domain"></a> [domain](#input\_domain) | Zone domain. | `string` | `"foo.local."` | no |
 | <a name="input_firewall_rules"></a> [firewall\_rules](#input\_firewall\_rules) | List of firewall rules | `any` | `[]` | no |
+| <a name="input_folder_id"></a> [folder\_id](#input\_folder\_id) | The folder id for the associated project | `string` | `""` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | A set of key/value label pairs to assign to this ManagedZone | `map(any)` | <pre>{<br>  "owner": "newacceleration",<br>  "version": "1.0"<br>}</pre> | no |
 | <a name="input_module_depends_on"></a> [module\_depends\_on](#input\_module\_depends\_on) | List of modules or resources this module depends on. | `list(any)` | `[]` | no |
 | <a name="input_mtu"></a> [mtu](#input\_mtu) | The network MTU (If set to 0, meaning MTU is unset - defaults to '1460'). Recommended values: 1460 (default for historic reasons), 1500 (Internet default), or 8896 (for Jumbo packets). Allowed are all values in the range 1300 to 8896, inclusively. | `number` | `0` | no |
 | <a name="input_name"></a> [name](#input\_name) | DNS zone name. | `string` | `"foo-local"` | no |
 | <a name="input_network_self_links"></a> [network\_self\_links](#input\_network\_self\_links) | Self link of the network that will be allowed to query the zone. | `list` | `[]` | no |
 | <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | The organization id for the associated services | `any` | n/a | yes |
-| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | Project id where the zone will be created. | `string` | `""` | no |
-| <a name="input_region"></a> [region](#input\_region) | Region. | `string` | `"europe-west4"` | no |
+| <a name="input_router_name"></a> [router\_name](#input\_router\_name) | Name of router, leave blank to create one. | `string` | `"vpn-router"` | no |
 | <a name="input_routes"></a> [routes](#input\_routes) | List of routes being created in this VPC | `list(map(string))` | `[]` | no |
 | <a name="input_routing_mode"></a> [routing\_mode](#input\_routing\_mode) | The network routing mode (default 'GLOBAL') | `string` | `"GLOBAL"` | no |
 | <a name="input_secondary_ranges"></a> [secondary\_ranges](#input\_secondary\_ranges) | Secondary ranges that will be used in some of the subnets | `map(list(object({ range_name = string, ip_cidr_range = string })))` | `{}` | no |
 | <a name="input_shared_vpc_host"></a> [shared\_vpc\_host](#input\_shared\_vpc\_host) | Makes this project a Shared VPC host if 'true' (default 'false') | `bool` | `true` | no |
-| <a name="input_subnets"></a> [subnets](#input\_subnets) | The list of subnets being created | `list(map(string))` | n/a | yes |
-| <a name="input_type"></a> [type](#input\_type) | The type of the project if it is hub or spoke | `string` | n/a | yes |
+| <a name="input_subnets"></a> [subnets](#input\_subnets) | The list of subnets being created | `list(map(string))` | `[]` | no |
+| <a name="input_type"></a> [type](#input\_type) | The type of the project if it is hub or spoke. | `string` | `"hub"` | no |
 
 ## Outputs
 
@@ -68,7 +70,9 @@
 | <a name="output_network_name"></a> [network\_name](#output\_network\_name) | The name of the VPC being created |
 | <a name="output_network_self_link"></a> [network\_self\_link](#output\_network\_self\_link) | The URI of the VPC being created |
 | <a name="output_project_id"></a> [project\_id](#output\_project\_id) | VPC project id |
+| <a name="output_project_info"></a> [project\_info](#output\_project\_info) | The ID of the created project |
 | <a name="output_route_names"></a> [route\_names](#output\_route\_names) | The route names associated with this VPC |
+| <a name="output_router_name"></a> [router\_name](#output\_router\_name) | router name |
 | <a name="output_subnets"></a> [subnets](#output\_subnets) | A map with keys of form subnet\_region/subnet\_name and values being the outputs of the google\_compute\_subnetwork resources used to create corresponding subnets. |
 | <a name="output_subnets_flow_logs"></a> [subnets\_flow\_logs](#output\_subnets\_flow\_logs) | Whether the subnets will have VPC flow logs enabled |
 | <a name="output_subnets_ids"></a> [subnets\_ids](#output\_subnets\_ids) | The IDs of the subnets being created |
