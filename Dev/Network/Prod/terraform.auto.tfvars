@@ -1,4 +1,4 @@
-project_id = "new-acceleration-364810"
+project_id = "acceleration-hub"
 
 //vpc
 network_name = "prod-acceleration-xpn-001"
