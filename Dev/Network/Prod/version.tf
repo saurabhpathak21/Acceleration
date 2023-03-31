@@ -30,11 +30,15 @@ terraform {
   provider_meta "google" {
     module_name = "blueprints/terraform/terraform-google-network/v6.0.1"
   }
-  cloud {
+}
+
+terraform {
+  backend "remote" {
+    hostname = "app.terraform.io"
     organization = "New-acceleration"
 
     workspaces {
-      name = "prod-acceleration"
+      prefix = "acceleration-"
     }
   }
 }
