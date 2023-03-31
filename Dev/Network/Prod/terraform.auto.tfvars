@@ -17,7 +17,7 @@ routes = [{
 subnets = [
   {
     subnet_name   = "public-subnet"
-    subnet_ip     = "10.0.10.0/24"
+    subnet_ip     = "10.0.11.0/24"
     subnet_region = "europe-west2"
   },
   {
