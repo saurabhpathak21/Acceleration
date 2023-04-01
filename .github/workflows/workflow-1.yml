@@ -38,17 +38,6 @@ jobs:
         id: fmt
         run: terraform -chdir=Dev/Network/Prod/ fmt -check
 
-      - name: Terraform Init
-        id: init
-
-      
-      - name: Terraform Validate
-        id: validate
-
-
-      - name: Terraform Plan
-        id: plan
-
 
       # - #name: Update Pull Request
       #   #uses: actions/github-script@v6
