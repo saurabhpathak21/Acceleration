@@ -25,7 +25,7 @@ jobs:
         run: pwd
 
       - name: Change the directory
-        run: cd Dev/Network/Dev/
+        run: cd Dev/Network/Prod/
       
 
       - name: list the directory
@@ -36,20 +36,20 @@ jobs:
 
       - name: Terraform Format
         id: fmt
-        run: terraform -chdir=Dev/Network/Dev/ fmt -check
+        run: terraform -chdir=Dev/Network/Prod/ fmt -check
 
       - name: Terraform Init
         id: init
-        run: terraform -chdir=Dev/Network/Dev/ init
+        run: terraform -chdir=Dev/Network/Prod/ init
       
       - name: Terraform Validate
         id: validate
-        run: terraform -chdir=Dev/Network/Dev/ validate -no-color
+        run: terraform -chdir=Dev/Network/Prod/ validate -no-color
 
       - name: Terraform Plan
         id: plan
         #if: github.event_name == 'pull_request'
-        run: terraform -chdir=Dev/Network/Dev/ plan -no-color -input=false
+        run: terraform -chdir=Dev/Network/Prod/ plan -no-color -input=false
         continue-on-error: true
 
       # - #name: Update Pull Request
