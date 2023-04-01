@@ -16,8 +16,8 @@
 
 
 
-variable "bucket"{
-    description = "The backend bucket"
+variable "bucket" {
+  description = "The backend bucket"
   type        = string
 }
 
