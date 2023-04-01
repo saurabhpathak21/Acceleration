@@ -33,12 +33,8 @@ terraform {
 }
 
 terraform {
-  backend "remote" {
-    hostname = "app.terraform.io"
-    organization = "New-acceleration"
-
-    workspaces {
-      prefix = "acceleration-"
-    }
-  }
+ backend "gcs" {
+   bucket  = "newacceleration"
+   prefix  = "terraform/state"
+ }
 }
