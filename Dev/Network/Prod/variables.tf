@@ -16,10 +16,10 @@
 
 
 
-variable "bucket" {
-  description = "The backend bucket"
-  type        = string
-}
+# variable "bucket" {
+#   description = "The backend bucket"
+#   type        = string
+# }
 
 
 variable "project_id" {
