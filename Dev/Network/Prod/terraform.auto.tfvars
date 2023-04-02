@@ -17,12 +17,12 @@ routes = [{
 subnets = [
   {
     subnet_name   = "public-subnet"
-    subnet_ip     = "10.0.17.0/24"
+    subnet_ip     = "10.0.13.0/24"
     subnet_region = "europe-west2"
   },
   {
     subnet_name           = "private-subnet"
-    subnet_ip             = "10.0.20.0/24"
+    subnet_ip             = "10.0.10.0/24"
     subnet_region         = "europe-west2"
     subnet_private_access = "true"
   }
