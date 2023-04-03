@@ -1,0 +1,17 @@
+---
+routers:
+- name: my-router-1
+  region: europe-west2
+  bgp:
+  - asn:
+    - '65002'
+  project: my-project-id-1
+  network: my-network
+
+- name: my-router-2
+  region: europe-west2
+  bgp:
+  - asn:
+    - '65003'
+  project: my-project-id-2
+  network: my-network
