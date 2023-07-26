@@ -47,8 +47,24 @@ SCRIPT
   }
 }
 
-module "compute_instance" {
+module "compute_instance_west" {
+
+  provider = west
+
   source              = "../../modules/compute"
+  region              = var.region
+  zone                = var.zone
+  subnetwork          = var.subnetwork
+  num_instances       = var.num_instances
+  hostname            = "webserver"
+  instance_template   = module.instance_template.self_link
+  deletion_protection = false
+}
+
+module "compute_instance_east" {
+  source   = "../../modules/compute"
+  provider = east
+
   region              = var.region
   zone                = var.zone
   subnetwork          = var.subnetwork

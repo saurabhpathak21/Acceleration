@@ -15,3 +15,14 @@ terraform {
     module_name = "blueprints/terraform/terraform-google-network/v4.1.0"
   }
 }
+provider "google" {
+  region      = "europe-west2"
+  alias       = "west"
+  credentials = var.secret_1
+}
+
+provider "google" {
+  region      = "europe-east2"
+  alias       = "east"
+  credentials = var.secret_2
+}

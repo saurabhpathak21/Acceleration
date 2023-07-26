@@ -48,3 +48,13 @@ variable "zone" {
 variable "subnetwork" {
   description = "The subnetwork selflink to host the compute instances in"
 }
+
+variable "secret_1" {
+  type      = string
+  sensitive = true
+}
+variable "secret_2" {
+  type      = string
+  sensitive = true
+
+}
