@@ -1,13 +1,13 @@
-data "terraform_remote_state" "instance" {
-  backend = "gcs"
-  config = {
-    bucket = "newacceleration"
-    prefix = "dev/instance"
-  }
-}
+# data "terraform_remote_state" "instance" {
+#   backend = "gcs"
+#   config = {
+#     bucket = "newacceleration"
+#     prefix = "dev/instance"
+#   }
+# }
 
 module "instance_template" {
-  source          = "../../modules/template"
+  source          = "../modules/template"
   region          = var.region
   project_id      = var.project_id
   subnetwork      = var.subnetwork
@@ -48,10 +48,9 @@ SCRIPT
 }
 
 module "compute_instance_west" {
-
+  source   = "../modules/compute"
   provider = west
 
-  source              = "../../modules/compute"
   region              = var.region
   zone                = var.zone
   subnetwork          = var.subnetwork
@@ -62,7 +61,7 @@ module "compute_instance_west" {
 }
 
 module "compute_instance_east" {
-  source   = "../../modules/compute"
+  source   = "../modules/compute"
   provider = east
 
   region              = var.region

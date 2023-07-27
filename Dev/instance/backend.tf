@@ -1,6 +1,9 @@
 terraform {
-  backend "gcs" {
-    bucket = "newacceleration"
-    prefix = "dev/instance"
+  cloud {
+    organization = "New-acceleration"
+
+    workspaces {
+      name = "acceleration-dev"
+    }
   }
 }
