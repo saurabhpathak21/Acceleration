@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-03-26T15:30:22.740Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15" etag="uMNb1LWe6Xiv-Wvm67wl" version="24.2.0" type="device">
+<mxfile host="app.diagrams.net" modified="2024-03-27T18:44:31.754Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="dOc-a3LNnFwoifyoQQY2" version="24.1.0" type="device">
   <diagram name="Page-1" id="3e8102d1-ef87-2e61-34e1-82d9a586fe2e">
-    <mxGraphModel dx="1434" dy="948" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1600" dy="657" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -28,41 +28,47 @@
         <mxCell id="70666756c84bb93c-15" value="Finance" style="shape=mxgraph.signs.travel.euro;html=1;fillColor=#ffffff;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;rounded=0;shadow=0;dashed=0;comic=0;fontFamily=Verdana;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="637" y="189" width="45" height="51" as="geometry" />
         </mxCell>
-        <mxCell id="oG1eyqVmzoZsqdTug3lH-1" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="oG1eyqVmzoZsqdTug3lH-1" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="179.5" width="750" height="750" as="geometry" />
         </mxCell>
-        <mxCell id="oG1eyqVmzoZsqdTug3lH-13" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+        <mxCell id="oG1eyqVmzoZsqdTug3lH-13" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="250" y="70" width="612.5" height="612.5" as="geometry" />
         </mxCell>
-        <mxCell id="oG1eyqVmzoZsqdTug3lH-14" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="oG1eyqVmzoZsqdTug3lH-14" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="324.5" y="152.5" width="460" height="460" as="geometry" />
         </mxCell>
-        <mxCell id="oG1eyqVmzoZsqdTug3lH-12" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+        <mxCell id="oG1eyqVmzoZsqdTug3lH-12" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
           <mxGeometry x="429" y="247" width="243" height="243" as="geometry" />
         </mxCell>
-        <mxCell id="oG1eyqVmzoZsqdTug3lH-15" value="Digital Transformation&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="oG1eyqVmzoZsqdTug3lH-15" value="Digital Transformation&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="500" y="346.25" width="100" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="oG1eyqVmzoZsqdTug3lH-16" value="&lt;b&gt;Digital Garage&lt;/b&gt;&lt;div&gt;- Director&lt;/div&gt;&lt;div&gt;- Mid Level Managers&lt;/div&gt;&lt;div&gt;Team leads&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="630" y="460" width="250" height="70" as="geometry" />
+        <mxCell id="oG1eyqVmzoZsqdTug3lH-16" value="&lt;b&gt;Digital Garage&lt;/b&gt;&lt;div&gt;- Director&lt;/div&gt;&lt;div&gt;- Mid Level Managers&lt;/div&gt;&lt;div&gt;Team leads&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="630" y="212" width="250" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="oG1eyqVmzoZsqdTug3lH-17" value="&lt;b&gt;Cross functional team&lt;/b&gt;&lt;div&gt;Comprise of&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Customer Service&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Product&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Regulatory/Governance&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="297" y="425" width="152" height="90" as="geometry" />
+        <mxCell id="oG1eyqVmzoZsqdTug3lH-17" value="&lt;b&gt;Cross functional team&lt;/b&gt;&lt;div&gt;Comprise of&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Customer Service&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Product&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;- Regulatory/Governance&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="348" y="189" width="152" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="oG1eyqVmzoZsqdTug3lH-18" value="Data and Analytics Team" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="oG1eyqVmzoZsqdTug3lH-18" value="Data and Analytics Team" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="510" y="60" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="oG1eyqVmzoZsqdTug3lH-20" value="Project Management" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="237" y="300" width="60" height="30" as="geometry" />
+        <mxCell id="oG1eyqVmzoZsqdTug3lH-20" value="Project Management" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="760" y="425.5" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="oG1eyqVmzoZsqdTug3lH-21" value="&lt;b&gt;Leadership Support&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="oG1eyqVmzoZsqdTug3lH-21" value="&lt;b&gt;Leadership Support&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="190" y="180" width="90" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="oG1eyqVmzoZsqdTug3lH-22" value="Infra &amp;nbsp;team" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="317" y="140" width="60" height="30" as="geometry" />
+        <mxCell id="oG1eyqVmzoZsqdTug3lH-22" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Infra &amp;nbsp;team&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="200" y="326" width="100" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="oG1eyqVmzoZsqdTug3lH-24" value="&lt;b&gt;Leadership&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="oG1eyqVmzoZsqdTug3lH-24" value="&lt;b&gt;Leadership&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="505.5" y="390" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s2zhQkqwQv8iKBEj_75l-3" value="Devops Team" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="526.25" y="670" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s2zhQkqwQv8iKBEj_75l-4" value="&lt;b&gt;Security team&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="840" y="337" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
